@@ -22,7 +22,7 @@ Usage of gostsum:
 
 #### Generate recursive hashsum list:
 <pre>
-$ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; 
+$ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; > hash.txt 
 </pre>
 
 #### Check hashsum file:
