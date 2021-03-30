@@ -32,7 +32,7 @@ $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \;
 </pre>
 
 
-### batch Script Examples:
+### Batch Script Examples:
 
 #### Recusive Hash in Bash Script [Linux] (recursive.sh):
 <pre>
