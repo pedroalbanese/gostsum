@@ -26,7 +26,7 @@ Usage of gostsum:
 #### Exit code is 0 in vebose mode. 
 
 ### Generate recursive hashsum list:
-$ find . -type f \( -name "*.*" \) -exec ./gostsum -t '{}' \; 
+$ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; 
 ### Recusive Hash in Bash:
 <pre>
 #/bin/bash
