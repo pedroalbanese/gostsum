@@ -1,5 +1,5 @@
-# gostsum(2) ### Compatible with RHash
-## gostsum Implementation written in Go
+# gostsum(2)
+## gostsum Implementation written in Go (Compatible with RHash)
 
 <pre>
 GOST R 34.11.94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021
