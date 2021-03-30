@@ -13,7 +13,7 @@ Usage of gostsum:
   -v    Verbose mode. (for CHECK command)
 </pre>
 
-### Create hashsum list:
+### Generate hashsum list:
 <pre>
 ./gostsum -t *.* > hash.txt
 </pre>
