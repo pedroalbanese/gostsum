@@ -1,6 +1,7 @@
 # gostsum(2)
 ## gostsum Implementation written in Go
 
+### Usage:
 <pre>
 GOST R 34.11.94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021
 
@@ -12,14 +13,14 @@ Usage of gostsum:
   -v    Verbose mode. (for CHECK command)
 </pre>
 
-Create hashsum list:
+### Create hashsum list:
 <pre>
 ./gostsum -t *.* > hash.txt
 </pre>
 
-Check hashsum file:
+### Check hashsum file:
 <pre>
 ./gostsum [-v] -c hash.txt
 </pre>
 
-Exit code is 0 in vebose mode. 
+#### Exit code is 0 in vebose mode. 
