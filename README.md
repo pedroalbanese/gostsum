@@ -20,17 +20,16 @@ Usage of gostsum:
 ./gostsum -t "*.*" > hash.txt
 </pre>
 
-#### Check hashsum file:
-<pre>
-./gostsum [-v] -c hash.txt
-</pre>
-##### Exit code is ever 0 in vebose mode. 
-
 #### Generate recursive hashsum list:
 <pre>
 $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; 
 </pre>
 
+#### Check hashsum file:
+<pre>
+./gostsum [-v] -c hash.txt
+</pre>
+##### Exit code is ever 0 in vebose mode. 
 
 ### Batch Script Examples:
 
