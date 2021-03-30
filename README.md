@@ -1,4 +1,4 @@
-# gostsum(2)
+# GOSTSUM(2)
 ## gostsum Parallel Implementation written in Go
 
 ### Usage:
