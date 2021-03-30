@@ -1,4 +1,4 @@
-# gostsum implementation in Go
+# gostsum(2) implementation in Go
 
 <pre>
 GOST R 34.11.94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021
