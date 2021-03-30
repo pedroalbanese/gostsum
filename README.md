@@ -31,7 +31,7 @@ Usage of gostsum:
 $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; 
 </pre>
 
-#### Recusive Hash in Bash:
+#### Recusive Hash in Bash (recursive.sh):
 <pre>
 #/bin/bash
 find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
@@ -40,7 +40,7 @@ find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '
 <pre>
 sh recusive.sh "*.txt" "*.csv" "*.ldj"
 </pre>
-#### Recusive Hash in Batch:
+#### Recusive Hash in Batch (recursive.bat):
 <pre>
 @ECHO OFF
 
