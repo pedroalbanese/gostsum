@@ -1,5 +1,5 @@
 # gostsum(2)
-## gostsum Implementation written in Go
+## gostsum Parallel Implementation written in Go
 
 ### Usage:
 <pre>
