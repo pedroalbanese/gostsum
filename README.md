@@ -14,6 +14,7 @@ Usage of gostsum:
 </pre>
 
 ## Examples:
+
 ### Generate hashsum list:
 <pre>
 ./gostsum -t "*.*" > hash.txt
@@ -27,11 +28,13 @@ Usage of gostsum:
 
 ### Generate recursive hashsum list:
 $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; 
+
 ### Recusive Hash in Bash:
 <pre>
 #/bin/bash
 find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
 </pre>
+#### sh recusive.sh *.txt *.csv *.ldj
 
 ### Recusive Hash in Batch:
 <pre>
@@ -43,3 +46,4 @@ for /r %%a in (%stdin%) do (
   set "x=%%a"
   tool\gostsum-t ".!x:%cd%\=\!"
 )</pre>
+#### recusive.bat *.txt *.csv *.ldj
