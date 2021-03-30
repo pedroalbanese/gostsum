@@ -11,3 +11,15 @@ Usage of gostsum:
         Target file/wildcard to generate hashsum list.
   -v    Verbose mode. (for CHECK command)
 </pre>
+
+Create hashsum list:
+<pre>
+./gostsum -t *.* > hash.txt
+</pre>
+
+Check hashsum file:
+<pre>
+./gostsum [-v] -c hash.txt
+</pre>
+
+Exit code is 0 in vebose mode. 
