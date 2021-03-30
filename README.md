@@ -15,7 +15,7 @@ Usage of gostsum:
 
 ### Generate hashsum list:
 <pre>
-./gostsum -t *.* > hash.txt
+./gostsum -t "*.*" > hash.txt
 </pre>
 
 ### Check hashsum file:
