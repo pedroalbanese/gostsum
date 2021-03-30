@@ -34,8 +34,10 @@ $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \;
 #/bin/bash
 find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
 </pre>
-#### sh recusive.sh *.txt *.csv *.ldj
-
+#### Evocation:
+<pre>
+sh recusive.sh *.txt *.csv *.ldj
+</pre>
 ### Recusive Hash in Batch:
 <pre>
 @ECHO OFF
@@ -46,4 +48,7 @@ for /r %%a in (%stdin%) do (
   set "x=%%a"
   tool\gostsum-t ".!x:%cd%\=\!"
 )</pre>
-#### recusive.bat *.txt *.csv *.ldj
+#### Evocation:
+<pre>
+recusive.bat *.txt *.csv *.ldj
+</pre>
