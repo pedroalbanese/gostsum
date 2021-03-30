@@ -24,7 +24,7 @@ Usage of gostsum:
 <pre>
 ./gostsum [-v] -c hash.txt
 </pre>
-##### Exit code is 0 in vebose mode. 
+##### Exit code is ever 0 in vebose mode. 
 
 ### Generate recursive hashsum list:
 <pre>
