@@ -26,21 +26,21 @@ Usage of gostsum:
 </pre>
 ##### Exit code is 0 in vebose mode. 
 
-#### Generate recursive hashsum list:
+### Generate recursive hashsum list:
 <pre>
 $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; 
 </pre>
 
-#### Recusive Hash in Bash [Linux] (recursive.sh):
+### Recusive Hash in Bash [Linux] (recursive.sh):
 <pre>
 #/bin/bash
 find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
 </pre>
-##### Calling:
+#### Calling:
 <pre>
 sh recusive.sh "*.txt" "*.csv" "*.ldj"
 </pre>
-#### Recusive Hash in Batch [Windows] (recursive.bat):
+### Recusive Hash in Batch [Windows] (recursive.bat):
 <pre>
 @ECHO OFF
 
@@ -50,7 +50,7 @@ for /r %%a in (%stdin%) do (
   set "x=%%a"
   tool\gostsum-t ".!x:%cd%\=\!"
 )</pre>
-##### Calling:
+#### Calling:
 <pre>
 recusive.bat "*.txt" "*.csv" "*.ldj"
 </pre>
