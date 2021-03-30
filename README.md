@@ -13,6 +13,7 @@ Usage of gostsum:
   -v    Verbose mode. (for CHECK command)
 </pre>
 
+## Examples:
 ### Generate hashsum list:
 <pre>
 ./gostsum -t "*.*" > hash.txt
@@ -22,5 +23,23 @@ Usage of gostsum:
 <pre>
 ./gostsum [-v] -c hash.txt
 </pre>
-
 #### Exit code is 0 in vebose mode. 
+
+### Generate recursive hashsum list:
+$ find . -type f \( -name "*.*" \) -exec ./gostsum -t '{}' \; 
+### Recusive Hash in Bash:
+<pre>
+#/bin/bash
+find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
+</pre>
+
+### Recusive Hash in Batch:
+<pre>
+@ECHO OFF
+
+set stdin=%*
+setlocal enabledelayedexpansion
+for /r %%a in (%stdin%) do (
+  set "x=%%a"
+  tool\gostsum-t ".!x:%cd%\=\!"
+)</pre>
