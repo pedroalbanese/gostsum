@@ -54,7 +54,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed opening file: %s", err)
 	}
- 
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
 	var txtlines []string
@@ -62,13 +61,9 @@ func main() {
 	for scanner.Scan() {
 		txtlines = append(txtlines, scanner.Text())
 	}
- 
 	file.Close()
- 
-
 	for _, eachline := range txtlines {
 	lines := strings.Split(string(eachline), " *")
-
 	if strings.Contains(string(eachline), " *") {
 
 	h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
