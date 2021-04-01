@@ -3,7 +3,7 @@
 
 ### Usage:
 <pre>
-GOST R 34.11.94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021
+GOST R 34.11-94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021
 
 Usage of gostsum:
   -c string
