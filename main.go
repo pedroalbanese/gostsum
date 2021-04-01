@@ -21,7 +21,7 @@ func main() {
     flag.Parse()
 
         if (len(os.Args) < 2) {
-	fmt.Println("GOST R 34.11.94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021\n")
+	fmt.Println("GOST R 34.11-94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021\n")
 	fmt.Println("Usage of",os.Args[0]+":")
         flag.PrintDefaults()
         os.Exit(1)
