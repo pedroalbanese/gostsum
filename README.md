@@ -24,12 +24,13 @@ Usage of gostsum:
 <pre>
 $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; > hash.txt 
 </pre>
+##### Always works in binary mode. 
 
 #### Check hashsum file:
 <pre>
 ./gostsum [-v] -c hash.txt
 </pre>
-##### Exit code is ever 0 in vebose mode. 
+##### Exit code is always 0 in vebose mode. 
 
 ### Batch Script Examples:
 
