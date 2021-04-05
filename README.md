@@ -37,7 +37,7 @@ $ ./gostsum [-v] -c hash.txt
 #### Recusive Hash in Bash Script [Linux] (recursive.sh):
 <pre>
 #/bin/bash
-$ find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
+find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
 </pre>
 ##### Calling:
 <pre>
