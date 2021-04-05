@@ -41,7 +41,7 @@ $ find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t
 </pre>
 ##### Calling:
 <pre>
-sh recusive.sh "*.txt" "*.csv" "*.ldj"
+$ sh recusive.sh "*.txt" "*.csv" "*.ldj"
 </pre>
 #### Recusive Hash in Batch Script [Windows] (recursive.bat):
 <pre>
