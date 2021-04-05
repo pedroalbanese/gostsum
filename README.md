@@ -17,7 +17,7 @@ Usage of gostsum:
 
 #### Generate hashsum list:
 <pre>
-./gostsum -t "*.*" > hash.txt
+$ ./gostsum -t "*.*" > hash.txt
 </pre>
 
 #### Generate recursive hashsum list:
@@ -28,7 +28,7 @@ $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; > hash.txt
 
 #### Check hashsum file:
 <pre>
-./gostsum [-v] -c hash.txt
+$ ./gostsum [-v] -c hash.txt
 </pre>
 ##### Exit code is always 0 in vebose mode. 
 
@@ -37,7 +37,7 @@ $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; > hash.txt
 #### Recusive Hash in Bash Script [Linux] (recursive.sh):
 <pre>
 #/bin/bash
-find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
+$ find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
 </pre>
 ##### Calling:
 <pre>
