@@ -21,12 +21,12 @@ gostsum [-v] [-c &lt;hash.g94&gt;] [-r] -t &lt;file.ext&gt;
 
 #### Generate hashsum list:
 <pre>
-$ ./gostsum -t "*.*" > hash.txt
+$ ./gostsum -t "*.*" > hash.g94
 </pre>
 ##### Always works in binary mode. 
 
 #### Check hashsum file:
 <pre>
-$ ./gostsum [-v] -c hash.txt
+$ ./gostsum [-v] -c hash.g94
 </pre>
 ##### Exit code is always 0 in vebose mode. 
