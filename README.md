@@ -21,7 +21,7 @@ gostsum [-v] [-c &lt;hash.g94&gt;] [-r] -t &lt;file.ext&gt;
 
 #### Generate hashsum list:
 <pre>
-$ ./gostsum -t "*.*" > hash.g94
+$ ./gostsum [-r] -t "*.*" > hash.g94
 </pre>
 ##### Always works in binary mode. 
 
