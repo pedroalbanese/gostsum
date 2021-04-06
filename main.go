@@ -23,6 +23,7 @@ func main() {
         if (len(os.Args) < 2) {
 	fmt.Println("GOST R 34.11-94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021\n")
 	fmt.Println("Usage of",os.Args[0]+":")
+        fmt.Printf("%s [-v] [-c <hash.g94>] -t <file.ext>\n\n", os.Args[0])
         flag.PrintDefaults()
         os.Exit(1)
         }
@@ -54,6 +55,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("failed opening file: %s", err)
 	}
+ 
 	scanner := bufio.NewScanner(file)
 	scanner.Split(bufio.ScanLines)
 	var txtlines []string
@@ -61,42 +63,45 @@ func main() {
 	for scanner.Scan() {
 		txtlines = append(txtlines, scanner.Text())
 	}
+ 
 	file.Close()
+ 
+
 	for _, eachline := range txtlines {
 	lines := strings.Split(string(eachline), " *")
+
 	if strings.Contains(string(eachline), " *") {
 
-	h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
+		h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
 
-	_, err := os.Stat(lines[1])
-	if err == nil {
-		f, err := os.Open(lines[1])
-		if err != nil {
-		     log.Fatal(err)
-		}
-		io.Copy(h, f)
-		
-		if *verbose {
-			if hex.EncodeToString(h.Sum(nil)) == lines[0] {
-				fmt.Println(lines[1] + "\t", "OK")
+		_, err := os.Stat(lines[1])
+		if err == nil {
+			f, err := os.Open(lines[1])
+			if err != nil {
+			     log.Fatal(err)
+			}
+			io.Copy(h, f)
+			
+			if *verbose {
+				if hex.EncodeToString(h.Sum(nil)) == lines[0] {
+					fmt.Println(lines[1] + "\t", "OK")
+				} else {
+					fmt.Println(lines[1] + "\t", "FAILED")
+				}
 			} else {
-				fmt.Println(lines[1] + "\t", "FAILED")
+				if hex.EncodeToString(h.Sum(nil)) == lines[0] {
+				} else {
+					os.Exit(1)
+				}
 			}
 		} else {
-			if hex.EncodeToString(h.Sum(nil)) == lines[0] {
+			if *verbose {
+				fmt.Println(lines[1] + "\t", "Not found!")
 			} else {
-				os.Exit(1)
-			}
+				os.Exit(1)	
+			}	
 		}
-	} else {
-		if *verbose {
-			fmt.Println(lines[1] + "\t", "Not found!")
-		} else {
-			os.Exit(1)	
-		}	
-	}
-	}
-	}
-
+		}
+		}
 	}
 }
