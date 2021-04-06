@@ -73,8 +73,8 @@ func main() {
 				if _, err := io.Copy(h, f); err != nil {
 					log.Fatal(err)
 				}
-			fmt.Println(hex.EncodeToString(h.Sum(nil)), "*" + f.Name())
-			}
+				fmt.Println(hex.EncodeToString(h.Sum(nil)), "*" + f.Name())
+				}
 			}
 			return nil
 		})
