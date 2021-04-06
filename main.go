@@ -16,7 +16,7 @@ import (
 	var check = flag.String("c", "", "Check hashsum file.")
 	var recursive = flag.Bool("r", false, "Process directories recursively.")
 	var target = flag.String("t", "", "Target file/wildcard to generate hashsum list.")
-	var verbose = flag.Bool("v", false, "Verbose mode. (for CHECK command)")
+	var verbose = flag.Bool("v", false, "Verbose mode. (The exit code is always 0 in this mode)")
 
 func main() {
     flag.Parse()
