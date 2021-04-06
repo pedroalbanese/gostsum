@@ -6,10 +6,11 @@
 GOST R 34.11-94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021
 
 Usage of gostsum:
-gostsum [-v] [-c &lt;hash.g94&gt;] -t &lt;file.ext&gt;
+gostsum [-v] [-c &lt;hash.g94&gt;] [-r] -t &lt;file.ext&gt;
 
   -c string
         Check hashsum file.
+  -r    Process directories recursively.
   -t string
         Target file/wildcard to generate hashsum list.
   -v    Verbose mode. (for CHECK command)
@@ -22,11 +23,6 @@ gostsum [-v] [-c &lt;hash.g94&gt;] -t &lt;file.ext&gt;
 <pre>
 $ ./gostsum -t "*.*" > hash.txt
 </pre>
-
-#### Generate recursive hashsum list:
-<pre>
-$ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; > hash.txt 
-</pre>
 ##### Always works in binary mode. 
 
 #### Check hashsum file:
@@ -34,29 +30,3 @@ $ find . -type f -name "*.*" -exec ./gostsum -t '{}' \; > hash.txt
 $ ./gostsum [-v] -c hash.txt
 </pre>
 ##### Exit code is always 0 in vebose mode. 
-
-### Batch Script Examples:
-
-#### Recusive Hash in Bash Script [Linux] (recursive.sh):
-<pre>
-#/bin/bash
-find . -type f \( -name "$1" -o -name "$2" -o -name "$3" \) -exec ./gostsum -t '{}' \;
-</pre>
-##### Calling:
-<pre>
-$ sh recusive.sh "*.txt" "*.csv" "*.ldj"
-</pre>
-#### Recusive Hash in Batch Script [Windows] (recursive.bat):
-<pre>
-@ECHO OFF
-
-set stdin=%*
-setlocal enabledelayedexpansion
-for /r %%a in (%stdin%) do (
-  set "x=%%a"
-  tool\gostsum-t ".!x:%cd%\=\!"
-)</pre>
-##### Calling:
-<pre>
-recusive.bat "*.txt" "*.csv" "*.ldj"
-</pre>
