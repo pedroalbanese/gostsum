@@ -14,9 +14,9 @@ import (
 )
 
 	var check = flag.String("c", "", "Check hashsum file.")
-	var target = flag.String("t", "", "Target file/wildcard to generate hashsum list.")
 	var recursive = flag.Bool("r", false, "Process directories recursively.")
-	var verbose = flag.Bool("v", false, "Verbose mode. (The exit code is always 0 in this mode)")
+	var target = flag.String("t", "", "Target file/wildcard to generate hashsum list.")
+	var verbose = flag.Bool("v", false, "Verbose mode. (for CHECK command)")
 
 func main() {
     flag.Parse()
@@ -50,7 +50,7 @@ func main() {
 	}
 
         if *target != "" && *recursive == true {
-		err := filepath.Walk(".",
+		err := filepath.Walk(filepath.Dir(*target),
 		func(path string, info os.FileInfo, err error) error {
 			if err != nil {
 				return err
@@ -58,15 +58,23 @@ func main() {
 			file, err := os.Stat(path)
 			if file.IsDir() {
 			} else {
-			h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
-			f, err := os.Open(path)
-			if err != nil {
-				log.Fatal(err)
-			}
-			if _, err := io.Copy(h, f); err != nil {
-				log.Fatal(err)
-			}
+				filename := filepath.Base(path)
+				pattern := filepath.Base(*target)
+				matched, err := filepath.Match(pattern, filename)
+				if err != nil {
+					fmt.Println(err)
+				}
+				if matched {
+				h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
+			        f, err := os.Open(path)
+			        if err != nil {
+			            log.Fatal(err)
+			        }
+				if _, err := io.Copy(h, f); err != nil {
+					log.Fatal(err)
+				}
 			fmt.Println(hex.EncodeToString(h.Sum(nil)), "*" + f.Name())
+			}
 			}
 			return nil
 		})
