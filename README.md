@@ -30,3 +30,8 @@ $ ./gostsum [-r] -t "*.*" > hash.g94
 $ ./gostsum [-v] -c hash.g94
 </pre>
 ##### Exit code is always 0 in vebose mode. 
+
+## License
+
+This project is licensed under the ISC License.
+##### Copyright (c) 2020-2021 Pedro Albanese - ALBANESE Lab.
