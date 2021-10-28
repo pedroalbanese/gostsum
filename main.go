@@ -5,13 +5,14 @@ import (
 	"encoding/hex"
 	"flag"
 	"fmt"
-	"github.com/pedroalbanese/gogost/gost28147"
-	"github.com/pedroalbanese/gogost/gost341194"
 	"io"
 	"log"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/pedroalbanese/gogost/gost28147"
+	"github.com/pedroalbanese/gogost/gost341194"
 )
 
 var (
@@ -30,6 +31,13 @@ func main() {
 		fmt.Printf("%s [-v] [-c <hash.g94>] -t <file.ext>\n\n", os.Args[0])
 		flag.PrintDefaults()
 		os.Exit(1)
+	}
+
+	if *target == "-" {
+		h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
+		io.Copy(h, os.Stdin)
+		fmt.Println(hex.EncodeToString(h.Sum(nil)) + " (stdin)")
+		os.Exit(0)
 	}
 
 	if *target != "" && *recursive == false {
@@ -91,17 +99,23 @@ func main() {
 	}
 
 	if *check != "" {
-		file, err := os.Open(*check)
-		if err != nil {
-			log.Fatalf("failed opening file: %s", err)
+		var file io.Reader
+		var err error
+		if *check == "-" {
+			file = os.Stdin
+		} else {
+			file, err = os.Open(*check)
+			if err != nil {
+				log.Fatalf("failed opening file: %s", err)
+			}
 		}
+
 		scanner := bufio.NewScanner(file)
 		scanner.Split(bufio.ScanLines)
 		var txtlines []string
 		for scanner.Scan() {
 			txtlines = append(txtlines, scanner.Text())
 		}
-		file.Close()
 		for _, eachline := range txtlines {
 			lines := strings.Split(string(eachline), " *")
 			if strings.Contains(string(eachline), " *") {
