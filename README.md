@@ -1,10 +1,9 @@
 # GOSTSUM(2)
-## gostsum Parallel Implementation written in Go
-
-### Usage:
+[![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/gostsum/blob/master/LICENSE.md) 
+[![GoDoc](https://godoc.org/github.com/pedroalbanese/gostsum?status.png)](http://godoc.org/github.com/pedroalbanese/gostsum)
+[![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/gostsum)](https://goreportcard.com/report/github.com/pedroalbanese/gostsum)
+### GOST R 34.11-94 CryptoPro Hashsum Tool
 <pre>
-GOST R 34.11-94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021
-
 Usage of gostsum:
 gostsum [-v] [-c &lt;hash.g94&gt;] [-r] -t &lt;file.ext&gt;
 
