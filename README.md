@@ -33,4 +33,4 @@ $ ./gostsum [-v] -c hash.g94
 ## License
 
 This project is licensed under the ISC License.
-##### Copyright (c) 2020-2021 Pedro Albanese - ALBANESE Lab.
+##### Copyright (c) 2020-2021 ALBANESE Research Lab.
