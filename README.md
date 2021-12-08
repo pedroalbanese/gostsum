@@ -4,25 +4,21 @@
 [![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/gostsum)](https://goreportcard.com/report/github.com/pedroalbanese/gostsum)
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pedroalbanese/gostsum)](https://golang.org)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/pedroalbanese/gostsum)](https://github.com/pedroalbanese/gostsum/releases)
-### GOST R 34.11-94 CryptoPro Hashsum Tool
+### GOST R 34.11-94 CryptoPro Recursive Hasher
 <pre>
 Usage of gostsum:
-gostsum [-v] [-c &lt;hash.g94&gt;] [-r] -t &lt;file.ext&gt;
-
+gostsum [-v] [-c &lt;hash.g94&gt;] [-r] &lt;file.ext&gt;
   -c string
-        Check hashsum file.
-  -r    Process directories recursively.
-  -t string
-        Target file/wildcard to generate hashsum list.
-  -v    Verbose mode. (The exit code is always 0 in this mode)
-
+        Check hashsum file
+  -r    Process directories recursively
+  -v    Verbose mode (for CHECK command)
 </pre>
 
 ### Examples:
 
 #### Generate hashsum list:
 <pre>
-$ ./gostsum [-r] -t "*.*" > hash.g94
+$ ./gostsum [-r] "*.*" > hash.g94
 </pre>
 ##### Always works in binary mode. 
 
