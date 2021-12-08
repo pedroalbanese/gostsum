@@ -16,32 +16,35 @@ import (
 )
 
 var (
-	check     = flag.String("c", "", "Check hashsum file.")
-	recursive = flag.Bool("r", false, "Process directories recursively.")
-	target    = flag.String("t", "", "Target file/wildcard to generate hashsum list.")
-	verbose   = flag.Bool("v", false, "Verbose mode. (for CHECK command)")
+	check     = flag.String("c", "", "Check hashsum file")
+	recursive = flag.Bool("r", false, "Process directories recursively")
+	verbose   = flag.Bool("v", false, "Verbose mode (for CHECK command)")
 )
 
 func main() {
 	flag.Parse()
 
 	if len(os.Args) < 2 {
-		fmt.Println("GOST R 34.11-94 CryptoPro Hashsum Tool - ALBANESE Lab (c) 2020-2021\n")
-		fmt.Println("Usage of", os.Args[0]+":")
-		fmt.Printf("%s [-v] [-c <hash.g94>] -t <file.ext>\n\n", os.Args[0])
+		fmt.Fprintln(os.Stderr, "GOSTSUM(2) Copyright (c) 2020-2021 ALBANESE Research Lab")
+		fmt.Fprintln(os.Stderr, "GOST R 34.11-94 CryptoPro Recursive Hasher written in Go\n")
+		fmt.Fprintln(os.Stderr, "Usage of", os.Args[0]+":")
+		fmt.Fprintf(os.Stderr, "%s [-v] [-c <hash.g94>] [-r] <file.ext>\n", os.Args[0])
 		flag.PrintDefaults()
 		os.Exit(1)
 	}
 
-	if *target == "-" {
+	Array := flag.Args()
+	Files := strings.Join(Array, " ")
+
+	if Files == "-" {
 		h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
 		io.Copy(h, os.Stdin)
 		fmt.Println(hex.EncodeToString(h.Sum(nil)) + " (stdin)")
 		os.Exit(0)
 	}
 
-	if *target != "" && *recursive == false {
-		files, err := filepath.Glob(*target)
+	if strings.Contains(Files, "*") && *check == "" && *recursive == false {
+		files, err := filepath.Glob(Files)
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -61,10 +64,30 @@ func main() {
 			}
 			f.Close()
 		}
+		os.Exit(0)
 	}
 
-	if *target != "" && *recursive == true {
-		err := filepath.Walk(filepath.Dir(*target),
+	if *check == "" && *recursive == false {
+		for _, match := range flag.Args() {
+			h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
+			f, err := os.Open(match)
+			if err != nil {
+				log.Fatal(err)
+			}
+			file, err := os.Stat(match)
+			if file.IsDir() {
+			} else {
+				if _, err := io.Copy(h, f); err != nil {
+					log.Fatal(err)
+				}
+				fmt.Println(hex.EncodeToString(h.Sum(nil)), "*"+f.Name())
+			}
+			f.Close()
+		}
+	}
+
+	if *check == "" && *recursive == true {
+		err := filepath.Walk(filepath.Dir(Files),
 			func(path string, info os.FileInfo, err error) error {
 				if err != nil {
 					return err
@@ -72,23 +95,25 @@ func main() {
 				file, err := os.Stat(path)
 				if file.IsDir() {
 				} else {
-					filename := filepath.Base(path)
-					pattern := filepath.Base(*target)
-					matched, err := filepath.Match(pattern, filename)
-					if err != nil {
-						fmt.Println(err)
-					}
-					if matched {
-						h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
-						f, err := os.Open(path)
+					for _, match := range flag.Args() {
+						filename := filepath.Base(path)
+						pattern := filepath.Base(match)
+						matched, err := filepath.Match(pattern, filename)
 						if err != nil {
-							log.Fatal(err)
+							fmt.Println(err)
 						}
-						if _, err := io.Copy(h, f); err != nil {
-							log.Fatal(err)
+						if matched {
+							h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
+							f, err := os.Open(path)
+							if err != nil {
+								log.Fatal(err)
+							}
+							if _, err := io.Copy(h, f); err != nil {
+								log.Fatal(err)
+							}
+							f.Close()
+							fmt.Println(hex.EncodeToString(h.Sum(nil)), "*"+f.Name())
 						}
-						f.Close()
-						fmt.Println(hex.EncodeToString(h.Sum(nil)), "*"+f.Name())
 					}
 				}
 				return nil
