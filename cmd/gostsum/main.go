@@ -33,8 +33,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	Array := flag.Args()
-	Files := strings.Join(Array, " ")
+	Files := strings.Join(flag.Args(), " ")
 
 	if Files == "-" {
 		h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
