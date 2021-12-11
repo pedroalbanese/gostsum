@@ -42,47 +42,30 @@ func main() {
 		os.Exit(0)
 	}
 
-	if strings.Contains(Files, "*") && *check == "" && *recursive == false {
-		files, err := filepath.Glob(Files)
-		if err != nil {
-			log.Fatal(err)
-		}
-		for _, match := range files {
-			h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
-			f, err := os.Open(match)
+	if *check == "" && *recursive == false {
+		for _, wildcard := range flag.Args() {
+			files, err := filepath.Glob(wildcard)
 			if err != nil {
 				log.Fatal(err)
 			}
-			file, err := os.Stat(match)
-			if file.IsDir() {
-			} else {
-				if _, err := io.Copy(h, f); err != nil {
+			for _, match := range files {
+				h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
+				f, err := os.Open(match)
+				if err != nil {
 					log.Fatal(err)
 				}
-				fmt.Println(hex.EncodeToString(h.Sum(nil)), "*"+f.Name())
+				file, err := os.Stat(match)
+				if file.IsDir() {
+				} else {
+					if _, err := io.Copy(h, f); err != nil {
+						log.Fatal(err)
+					}
+					fmt.Println(hex.EncodeToString(h.Sum(nil)), "*"+f.Name())
+				}
+				f.Close()
 			}
-			f.Close()
 		}
 		os.Exit(0)
-	}
-
-	if *check == "" && *recursive == false {
-		for _, match := range flag.Args() {
-			h := gost341194.New(&gost28147.SboxIdGostR341194CryptoProParamSet)
-			f, err := os.Open(match)
-			if err != nil {
-				log.Fatal(err)
-			}
-			file, err := os.Stat(match)
-			if file.IsDir() {
-			} else {
-				if _, err := io.Copy(h, f); err != nil {
-					log.Fatal(err)
-				}
-				fmt.Println(hex.EncodeToString(h.Sum(nil)), "*"+f.Name())
-			}
-			f.Close()
-		}
 	}
 
 	if *check == "" && *recursive == true {
