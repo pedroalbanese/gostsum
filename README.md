@@ -1,5 +1,6 @@
 # GOSTSUM(2)
 [![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](https://github.com/pedroalbanese/gostsum/blob/master/LICENSE.md) 
+[![GitHub downloads](https://img.shields.io/github/downloads/pedroalbanese/gostsum/total.svg?logo=github&logoColor=white)](https://github.com/pedroalbanese/gostsum/releases)
 [![GoDoc](https://godoc.org/github.com/pedroalbanese/gostsum?status.png)](http://godoc.org/github.com/pedroalbanese/gostsum)
 [![Go Report Card](https://goreportcard.com/badge/github.com/pedroalbanese/gostsum)](https://goreportcard.com/report/github.com/pedroalbanese/gostsum)
 [![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/pedroalbanese/gostsum)](https://golang.org)
